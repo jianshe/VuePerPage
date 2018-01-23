@@ -1,6 +1,6 @@
 <template>
   <div class="pos">
-    home
+    口碑
    <foot-guide></foot-guide>
   </div>
 </template>

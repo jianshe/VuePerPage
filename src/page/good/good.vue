@@ -1,6 +1,6 @@
 <template>
   <div class="pos">
-    home
+    good
    <foot-guide></foot-guide>
   </div>
 </template>
