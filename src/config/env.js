@@ -7,7 +7,7 @@
  * 
  */
 
-let baseUrl = ''; 
+let baseUrl = 'http://cangdu.org:8001'; 
 let routerMode = 'hash';
 let imgBaseUrl;
 

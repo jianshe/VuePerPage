@@ -1,21 +1,21 @@
 <template>
     <section id='foot_guide'>
-        <section @click = "gotoAddress({path: '/home'})"  class="guide_item">
-            <i :class="$route.path.indexOf('home') !== -1? 'icon iconfont icon-homefill' : 'icon iconfont icon-home'"></i>
+        <a @click = "gotoAddress({path: '/msite'})"  :class="$route.path.indexOf('msite') !== -1? 'guide_item active' : 'guide_item'">
+            <i :class="$route.path.indexOf('msite') !== -1? 'icon iconfont icon-homefill' : 'icon iconfont icon-home'"></i>
             <span>主页</span>
-        </section>
-        <section @click = "gotoAddress({path: '/good'})"  class="guide_item">
+        </a>
+        <a @click = "gotoAddress({path: '/good'})"  :class="$route.path.indexOf('good') !== -1? 'guide_item active' : 'guide_item'">
         	<i :class="$route.path.indexOf('good') !== -1? 'icon iconfont icon-goodsnewfill' : 'icon iconfont icon-goodsnew'"></i>
             <span>商品</span>
-        </section>
-        <section @click = "gotoAddress({path: '/upstage'})"  class="guide_item">
+        </a>
+        <a @click = "gotoAddress({path: '/upstage'})"  :class="$route.path.indexOf('upstage') !== -1? 'guide_item active' : 'guide_item'">
         	<i :class="$route.path.indexOf('upstage') !== -1? 'icon iconfont icon-upstagefill' : 'icon iconfont icon-upstage'"></i>
             <span>口碑</span>
-        </section>
-        <section @click = "gotoAddress({path: '/friend'})"  class="guide_item">
+        </a>
+        <a @click = "gotoAddress({path: '/friend'})"  :class="$route.path.indexOf('friend') !== -1? 'guide_item active' : 'guide_item'">
         	<i :class="$route.path.indexOf('friend') !== -1? 'icon iconfont icon-friendaddfill' : 'icon iconfont icon-friendadd'"></i>
             <span>用户</span>
-        </section>
+        </a>
     </section>
 </template>
 
@@ -50,6 +50,11 @@ export default {
   display: flex;
   box-shadow: 0 -0.026667rem 0.053333rem rgba(0, 0, 0, 0.1);
   padding-top: 0.2rem;
+  .active{
+    span{
+      color: rgb(63, 58, 58);
+    }
+  }
 }
 .guide_item {
   flex: 1;
@@ -65,8 +70,5 @@ export default {
   span {
     @include sc(0.45rem, #666);
   }
-}
-.iconfont {
-  font-size: 1rem;
 }
 </style>

@@ -87,6 +87,9 @@ html,body{
 .show{
     display: block;
 }
+.white{
+    color: #ffffff;
+}
 
 .ellipsis{
     overflow: hidden;
@@ -108,4 +111,7 @@ html,body{
 
 .animation_opactiy{
     animation: backOpacity 2s ease-in-out infinite;
+}
+.iconfont {
+    font-size: 1rem;
 }
