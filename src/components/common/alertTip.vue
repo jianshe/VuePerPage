@@ -25,7 +25,7 @@
         props: ['alertText'],
         methods: {
             closeTip(){
-                this.$emit('closeTip')
+                this.$emit('closeTip')//触发自定义的closeTip的函数。
             }
         }
     }

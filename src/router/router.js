@@ -2,6 +2,7 @@ import App from '../App'
 const home = r => require.ensure([], () => r(require('../page/home/home')), 'home')
 const city = r => require.ensure([], () => r(require('../page/city/city')), 'city')
 const login = r => require.ensure([], () => r(require('../page/login/login')), 'login')
+const forget = r => require.ensure([],() => r(require('../page/forget/forget')),'forget')
 const msite = r => require.ensure([], () => r(require('../page/msite/msite')), 'msite')
 const good = r => require.ensure([], () => r(require('../page/good/good')), 'good')
 const upstage = r => require.ensure([], () => r(require('../page/upstage/upstage')), 'upstage')
@@ -28,6 +29,11 @@ export default [{
     {
       path: '/login',
       component: login
+    },
+    //忘记密码页
+    {
+      path:'/forget',
+      component:forget
     },
     {
       path: '/msite',

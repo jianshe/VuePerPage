@@ -6,7 +6,7 @@
           <i class="icon iconfont white icon-back"></i>
         </section>
         <router-link :to="userInfo? '/profile':'/login'" v-if='signinUp' class="head_login">
-            <span v-if="userInfo"><i class="icon iconfont icon-mine"></i></span>
+            <span v-if="userInfo"><i class="icon iconfont white icon-mine"></i></span>
             <span class="login_span" v-else>登录|注册</span>
         </router-link>
         <section class="title_head ellipsis" v-if="headTitle">
@@ -30,8 +30,8 @@
         mounted(){
             //获取用户信息
             this.getUserInfo();
-
         },
+        /**props 接收父组件传的值，来控制弹窗显示和隐藏 */
         props: ['signinUp', 'headTitle', 'goBack'],
         computed: {
             ...mapState([

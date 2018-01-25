@@ -183,8 +183,4 @@ export default {
             }
         }
     }
-    .iconfont{
-        color: #9f9f9f;
-    }
-
 </style>

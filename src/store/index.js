@@ -12,6 +12,7 @@ const state = {
 	userInfo: null, //用户信息
 	searchAddress: null,//搜索并选择的地址
 	geohash: '31.22299,121.36025',//地址geohash值
+	login: true,//是否登录
 }
 
 export default new Vuex.Store({

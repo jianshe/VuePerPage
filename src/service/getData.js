@@ -120,3 +120,8 @@ export const sendLogin = (code, mobile, validate_token) => fetch('/v1/login/app_
 	mobile,
 	validate_token
 }, 'POST');
+
+/**
+ * 改密码
+ */
+export const changePassword = (username, oldpassWord, newpassword, confirmpassword, captcha_code) => fetch('/v2/changepassword', {username, oldpassWord, newpassword, confirmpassword, captcha_code}, 'POST');
