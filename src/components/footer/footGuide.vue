@@ -12,8 +12,8 @@
         	<i :class="$route.path.indexOf('upstage') !== -1? 'icon iconfont icon-upstagefill' : 'icon iconfont icon-upstage'"></i>
             <span>口碑</span>
         </a>
-        <a @click = "gotoAddress({path: '/friend'})"  :class="$route.path.indexOf('friend') !== -1? 'guide_item active' : 'guide_item'">
-        	<i :class="$route.path.indexOf('friend') !== -1? 'icon iconfont icon-friendaddfill' : 'icon iconfont icon-friendadd'"></i>
+        <a @click = "gotoAddress({path: '/profile'})"  :class="$route.path.indexOf('profile') !== -1? 'guide_item active' : 'guide_item'">
+        	<i :class="$route.path.indexOf('profile') !== -1? 'icon iconfont icon-friendaddfill' : 'icon iconfont icon-friendadd'"></i>
             <span>用户</span>
         </a>
     </section>

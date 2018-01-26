@@ -13,6 +13,9 @@ const state = {
 	searchAddress: null,//搜索并选择的地址
 	geohash: '31.22299,121.36025',//地址geohash值
 	login: true,//是否登录
+	imgPath:null,//头像地址
+	removeAddress:[],//移除地址
+	addAddress:'',		//新增地址
 }
 
 export default new Vuex.Store({
