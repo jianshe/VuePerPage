@@ -26,12 +26,11 @@
                 earn: true,     //输入框提醒
                 bordercolor: false,  //输入框边框颜色
                 opacityall: false,   //字体透明度
-                inputValue: '',       //输入框的内容
-                newusername: ''         //新用户名
+                inputValue: ''     //输入框的内容
             }
         },
         created(){
-
+            
         },
         mixins: [getImgPath],
         components: {
@@ -39,11 +38,10 @@
 
         },
         mounted(){
-            
         },
         computed:{
             ...mapState([
-                'userInfo'
+                'userInfo','userName'
             ])
         },
         props:[],

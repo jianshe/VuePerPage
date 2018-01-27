@@ -9,6 +9,19 @@ const upstage = r => require.ensure([], () => r(require('../page/upstage/upstage
 const profile = r => require.ensure([], () => r(require('../page/profile/profile')), 'profile')
 const info = r => require.ensure([], () => r(require('../page/profile/children/info')), 'info')
 const setusername = r => require.ensure([], () => r(require('../page/profile/children/setusername')), 'setusername')
+const balance = r => require.ensure([], () => r(require('../page/balance/balance')), 'balance')
+const balanceDetail = r => require.ensure([], () => r(require('../page/balance/children/detail')), 'balanceDetail')
+
+const benefit = r => require.ensure([], () => r(require('../page/benefit/benefit')), 'benefit')
+const coupon = r => require.ensure([], () => r(require('../page/benefit/children/coupon')), 'coupon')
+const hbDescription = r => require.ensure([], () => r(require('../page/benefit/children/hbDescription')), 'hbDescription')
+const hbHistory = r => require.ensure([], () => r(require('../page/benefit/children/hbHistory')), 'hbHistory')
+const exchange = r => require.ensure([], () => r(require('../page/benefit/children/exchange')), 'exchange')
+const commend = r => require.ensure([], () => r(require('../page/benefit/children/commend')), 'commend')
+
+const points = r => require.ensure([], () => r(require('../page/points/points')), 'points')
+const pointsDetail = r => require.ensure([], () => r(require('../page/points/children/detail')), 'pointsDetail')
+
 const test = r => require.ensure([], () => r(require('../page/test/test')), 'test')
 // const address = r => require.ensure([], () => r(require('../page/profile/children/children/address')), 'address')
 // const add = r => require.ensure([], () => r(require('../page/profile/children/children/children/add')), 'add')
@@ -53,8 +66,8 @@ export default [{
       component: good
     },
     {
-      path:'/test',
-      component:test
+      path: '/test',
+      component: test
     },
     {
       path: '/upstage',
@@ -66,29 +79,51 @@ export default [{
       component: profile,
       children: [{
           path: 'info', //个人信息详情页
-          component: info,
-          // children: [{
-          //   path: 'address',
-          //   component: address, //编辑地址
-          //   children: [{
-          //     path: 'add',
-          //     component: add,
-          //     children: [{
-          //       path: 'addDetail',
-          //       component: addDetail
-          //     }]
-          //   }]
-          // }]
+          component: info
         },
         {
           path: 'setusername',
           component: setusername,
-        },
-        // {
-        //   path: 'service', //服务中心
-        //   component: service,
-        // },
+        }
       ]
+    },
+    //余额
+    {
+      path: 'balance',
+      component: balance,
+      children: [{
+        path: 'detail', //余额说明
+        component: balanceDetail,
+      }]
+    }, //我的优惠页
+    {
+      path: 'benefit',
+      component: benefit,
+      children: [{
+        path: 'coupon', //代金券说明
+        component: coupon,
+      }, {
+        path: 'hbDescription', //红包说明
+        component: hbDescription,
+      }, {
+        path: 'hbHistory', //历史红包
+        component: hbHistory,
+      }, {
+        path: 'exchange', //兑换红包
+        component: exchange,
+      }, {
+        path: 'commend', //推荐有奖
+        component: commend,
+      }, ]
+    },
+    //我的积分页
+    {
+      path: 'points',
+      component: points,
+      children: [{
+        path: 'detail', //积分说明
+        component: pointsDetail,
+      }, ]
     }
   ]
 }]

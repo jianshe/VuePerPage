@@ -19,7 +19,7 @@
                 <section class="headportrait headportraitwo">
                     <h2>用户名</h2>
                     <div class="headportrait-div">
-                        <p>{{username}}</p>
+                        <p>{{userName}}</p>
                         <span class="headportrait-div-bottom">
                             <i class="icon iconfont iconuserfont icon-right"></i>
                         </span>
@@ -78,8 +78,6 @@
     export default {
         data(){
             return{
-                username:'',    //用户名
-                resetname:'', //重置用户名
                 infotel:'',     //用户手机
                 avatar:'',      //用户头像
                 show:false,     //显示提示框
@@ -101,7 +99,7 @@
         mixins: [getImgPath],
         computed:{
             ...mapState([
-                'userInfo', 'imgPath'
+                'userInfo','userName','imgPath'
             ]),
         },
         methods: {
