@@ -10,9 +10,18 @@ const profile = r => require.ensure([], () => r(require('../page/profile/profile
 const info = r => require.ensure([], () => r(require('../page/profile/children/info')), 'info')
 const setusername = r => require.ensure([], () => r(require('../page/profile/children/setusername')), 'setusername')
 const test = r => require.ensure([], () => r(require('../page/test/test')), 'test')
-// const address = r => require.ensure([], () => r(require('../page/profile/children/children/address')), 'address')
-// const add = r => require.ensure([], () => r(require('../page/profile/children/children/children/add')), 'add')
-// const addDetail = r => require.ensure([], () => r(require('../page/profile/children/children/children/children/addDetail')), 'addDetail')
+const balance = r => require.ensure([],()=>r(require('../page/balance/balance.vue')),'balance')
+const detail = r =>require.ensure([],()=>r(require('../page/balance/children/detail.vue')),'detail')
+const benefit = r =>require.ensure([],()=>r(require('../page/benefit/benefit.vue')),'benefit')
+const hbDescription = r =>require.ensure([],()=>r(require('../page/benefit/children/hbDescription.vue')),'hbDescription')
+const commend = r =>require.ensure([],()=>r(require('../page/benefit/children/commend.vue')),'commend')
+const hbHistory = r=>require.ensure([],()=>r(require('../page/benefit/children/hbHistory.vue')),'hbHistory')
+const coupon = r=>require.ensure([],()=>r(require('../page/benefit/children/coupon.vue')),'coupon')
+const exchange = r=>require.ensure([],()=>r(require('../page/benefit/children/exchange.vue')),'exchange')
+const download = r => require.ensure([], () => r(require('../page/download/download')), 'download')
+const points = r=>require.ensure([],()=>r(require('../page/points/points.vue')),'points')
+const pointsDetail = r => require.ensure([], () => r(require('../page/points/children/detail')), 'pointsDetail')
+
 export default [{
   path: '/',
   component: App, //顶层路由，对应index.html
@@ -66,29 +75,55 @@ export default [{
       component: profile,
       children: [{
           path: 'info', //个人信息详情页
-          component: info,
-          // children: [{
-          //   path: 'address',
-          //   component: address, //编辑地址
-          //   children: [{
-          //     path: 'add',
-          //     component: add,
-          //     children: [{
-          //       path: 'addDetail',
-          //       component: addDetail
-          //     }]
-          //   }]
-          // }]
+          component: info
         },
         {
           path: 'setusername',
           component: setusername,
-        },
-        // {
-        //   path: 'service', //服务中心
-        //   component: service,
-        // },
+        }
       ]
+    },
+    //个人信息余额页
+    {
+      path:'/balance',
+      component:balance,
+      children:[{
+        path:'detail',
+        component:detail
+      }]
+    }, //个人信息优惠页
+    {
+      path:'/benefit',
+      component:benefit,
+      children:[{
+        path:'commend',
+        component:commend
+      },{
+        path:'hbDescription',
+        component:hbDescription
+      },{
+        path:'hbHistory',
+        component:hbHistory
+      },{
+        path:'coupon',
+        component:coupon
+      },{
+        path:'exchange',
+        component:exchange
+      }
+    ]
+    },
+    //下载页面
+    {
+      path:'/download',
+      component:download
+    },{
+      path:'/points',
+      component:points,
+      children:[{
+        path:'detail',
+        component:pointsDetail
+      }]
     }
   ]
 }]

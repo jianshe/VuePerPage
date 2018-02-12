@@ -110,6 +110,37 @@ export const accountLogin = (username, password, captcha_code) => fetch('/v2/log
   captcha_code
 }, 'POST');
 
+/**
+ * 重新发送订单验证码
+ */
+
+export const payRequest = (merchantOrderNo, userId) => fetch('/payapi/payment/queryOrder', {
+	merchantId: 5,
+	merchantOrderNo,
+	source: 'MOBILE_WAP',
+	userId,
+	version: '1.0.0',
+});
+
+/**
+ * 获取红包
+*/
+
+export const getHongbaoNum = id => fetch('/promotion/v2/users/' + id + '/hongbaos?limit=20&offset=0');
+
+/**
+ * 获取过期红包
+*/
+/**
+ * 兑换红包
+*/
+
+export const exChangeHongbao = (id, exchange_code, captcha_code) => fetch('/v1/users/' + id + '/hongbao/exchange',{
+	exchange_code,
+	captcha_code,
+}, 'POST');
+
+export const getExpired = id => fetch('/promotion/v2/users/' + id + '/expired_hongbaos?limit=20&offset=0');
 
 /**
  * 手机号登录

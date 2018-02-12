@@ -56,7 +56,7 @@ export default {
     //修改用户名
     state.userInfo = Object.assign({}, state.userInfo, {
       username
-    })
+	})
   },
   //退出登录
   [OUT_LOGIN](state) {
