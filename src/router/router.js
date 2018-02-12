@@ -122,7 +122,12 @@ export default [{
       children: [{
         path: 'detail', //积分说明
         component: pointsDetail,
-      }, ]
+      }]
+    },
+    //我的下载页
+    {
+      path:'/download',
+      component:download
     }
   ]
 }]
