@@ -53,17 +53,11 @@ export default {
   [SAVE_GEOHASH](state, geohash) {
     state.geohash = geohash;
   },
-  //重置用户名
+  //修改用户名
   [RETSET_NAME](state, username) {
-    //修改用户名
     state.userInfo = Object.assign({}, state.userInfo, {
       username
-<<<<<<< HEAD
-	})
-=======
     })
-    state.userName = state.userInfo.username
->>>>>>> 2675a0b64f5c988d75e7900f807b87ab27c37e3a
   },
   //退出登录
   [OUT_LOGIN](state) {

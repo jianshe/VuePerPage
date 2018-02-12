@@ -3,25 +3,11 @@ import {
   getStore
 } from '../config/mUtils'
 
-/**
- * 获取红包
-*/
-
-export const getHongbaoNum = id => fetch('/promotion/v2/users/' + id + '/hongbaos?limit=20&offset=0');
 
 /**
  * 获取过期红包
 */
 export const getExpired = id => fetch('/promotion/v2/users/' + id + '/expired_hongbaos?limit=20&offset=0');
-
-/**
- * 兑换红包
-*/
-
-export const exChangeHongbao = (id, exchange_code, captcha_code) => fetch('/v1/users/' + id + '/hongbao/exchange',{
-	exchange_code,
-	captcha_code,
-}, 'POST');
 
 
 /**
@@ -159,8 +145,6 @@ export const exChangeHongbao = (id, exchange_code, captcha_code) => fetch('/v1/u
 	exchange_code,
 	captcha_code,
 }, 'POST');
-
-export const getExpired = id => fetch('/promotion/v2/users/' + id + '/expired_hongbaos?limit=20&offset=0');
 
 /**
  * 手机号登录
