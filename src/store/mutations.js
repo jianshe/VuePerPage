@@ -43,8 +43,10 @@ export default {
     if (!info.message) {
       state.userInfo = { ...info
       };
+      state.userName = state.userInfo.username;
     } else {
       state.userInfo = null;
+      state.userName = '';
     }
   },
   //保存geohash
@@ -56,7 +58,12 @@ export default {
     //修改用户名
     state.userInfo = Object.assign({}, state.userInfo, {
       username
+<<<<<<< HEAD
 	})
+=======
+    })
+    state.userName = state.userInfo.username
+>>>>>>> 2675a0b64f5c988d75e7900f807b87ab27c37e3a
   },
   //退出登录
   [OUT_LOGIN](state) {

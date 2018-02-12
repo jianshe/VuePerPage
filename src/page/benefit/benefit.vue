@@ -67,9 +67,12 @@
                         <img src="../../images/voucher.png" height="170" width="300">
                         <p>无法使用代金券</p>
                         <p>非客户端或客户端版本过低</p>
+<<<<<<< HEAD
                         <router-link to="/download" class="download_app">
                         下载或升级客户端
                         </router-link>
+=======
+>>>>>>> 2675a0b64f5c988d75e7900f807b87ab27c37e3a
                     </section>
                 </section>
             </transition>

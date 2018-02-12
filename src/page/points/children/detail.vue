@@ -41,7 +41,10 @@
   
 <style lang="scss" scoped>
     @import 'src/style/mixin';
+<<<<<<< HEAD
   
+=======
+>>>>>>> 2675a0b64f5c988d75e7900f807b87ab27c37e3a
     .page{
         position: fixed;
         top: 0;

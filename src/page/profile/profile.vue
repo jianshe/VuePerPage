@@ -9,7 +9,7 @@
                        
                     </span>
                     <div class="user-info">
-                        <p>{{username}}</p>
+                        <p>{{userName}}</p>
                         <p>
                             <span class="user-icon">
                                 <i class="icon iconfont iconuserfont icon-mobile"></i>
@@ -38,38 +38,6 @@
                     </router-link>
                 </ul>
             </section>
-            <section class="profile-1reTe">
-                <!-- 服务中心 -->
-                <router-link to='/service' class="myorder">
-                    <aside>
-                        <svg fill="#4aa5f0">
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#service"></use>
-                        </svg>
-                    </aside>
-                    <div class="myorder-div">
-                        <span>服务中心</span>
-                        <span class="myorder-divsvg">
-                           <i class="icon iconfont iconuserfont icon-right"></i>
-                        </span>
-                    </div>
-                </router-link>
-            </section>
-            <section class="profile-1reTe">
-                <!-- 服务中心 -->
-                <router-link to='/service' class="myorder">
-                    <aside>
-                        <svg fill="#4aa5f0">
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#service"></use>
-                        </svg>
-                    </aside>
-                    <div class="myorder-div">
-                        <span>订单中心</span>
-                        <span class="myorder-divsvg">
-                           <i class="icon iconfont iconuserfont icon-right"></i>
-                        </span>
-                    </div>
-                </router-link>
-            </section>
         </section>
         <foot-guide></foot-guide>
         <transition name="router-slid" mode="out-in">
@@ -89,7 +57,6 @@ export default {
     data(){
         return{
             profiletitle: '我的',
-            username: '登录/注册',           //用户名
             resetname: '',
             mobile: '暂无绑定手机号',             //电话号码
             balance: 0,            //我的余额
@@ -110,7 +77,7 @@ export default {
 
     computed:{
         ...mapState([
-            'userInfo',
+            'userInfo','userName'
         ]),
         //后台会返回两种头像地址格式，分别处理
         imgpath:function () {
