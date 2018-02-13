@@ -22,7 +22,9 @@ const commend = r => require.ensure([], () => r(require('../page/benefit/childre
 const points = r => require.ensure([], () => r(require('../page/points/points')), 'points')
 const pointsDetail = r => require.ensure([], () => r(require('../page/points/children/detail')), 'pointsDetail')
 
-const test = r => require.ensure([], () => r(require('../page/test/test')), 'test')
+const test = r => require.ensure([], () => r(require('../page/test/pushDatas')), 'test')
+const service = r => require.ensure([], () => r(require('../page/service/service')), 'service')
+const questionDetail = r => require.ensure([], () => r(require('../page/service//children/questionDetail')), 'questionDetail')
 const download = r => require.ensure([], () => r(require('../page/download/download')), 'download')
 
 export default [{
@@ -124,10 +126,19 @@ export default [{
         component: pointsDetail,
       }]
     },
+    //服务中心
+    {
+      path: '/service',
+      component: service,
+      children: [{
+        path: 'questionDetail', //订单详情页
+        component: questionDetail,
+      }, ]
+    },
     //我的下载页
     {
-      path:'/download',
-      component:download
+      path: '/download',
+      component: download
     }
   ]
 }]

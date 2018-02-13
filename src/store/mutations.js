@@ -3,6 +3,7 @@ import {
   RECORD_SHOPDETAIL,
   RECORD_USERINFO,
   GET_USERINFO,
+  SAVE_QUESTION,
   SAVE_GEOHASH,
   RETSET_NAME,
   OUT_LOGIN
@@ -53,6 +54,10 @@ export default {
   [SAVE_GEOHASH](state, geohash) {
     state.geohash = geohash;
   },
+  //保存所选问题标题和详情
+	[SAVE_QUESTION](state, question) {
+		state.question = {...question};
+	},
   //修改用户名
   [RETSET_NAME](state, username) {
     state.userInfo = Object.assign({}, state.userInfo, {

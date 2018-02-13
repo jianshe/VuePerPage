@@ -128,6 +128,13 @@ export const payRequest = (merchantOrderNo, userId) => fetch('/payapi/payment/qu
 	version: '1.0.0',
 });
 
+
+/**
+ * 获取服务中心信息
+ */
+
+export const getService = () => fetch('/v3/profile/explain');
+
 /**
  * 获取红包
 */
@@ -165,3 +172,22 @@ export const changePassword = (username, oldpassWord, newpassword, confirmpasswo
  * 退出登录
  */
 export const signout = () => fetch('/v2/signout');
+
+
+/**
+ * 获取msite页面地址信息
+ */
+
+export const msiteAddress = geohash => fetch('/v2/pois/' + geohash);
+
+
+/**
+ * 获取msite页面食品分类列表
+ */
+
+export const msiteFoodTypes = geohash => fetch('/v2/index_entry', {
+	geohash,
+	group_type: '1',
+	'flags[]': 'F'
+});
+
