@@ -34,7 +34,8 @@ import { mapMutations } from "vuex";
 import headTop from "@/components/header/head";
 import footGuide from "@/components/footer/footGuide";
 import { msiteAddress, msiteFoodTypes, cityGuess } from "@/service/getData";
-
+import '@/plugins/swiper.min.js'
+import '@/style/swiper.min.css'
 export default {
   data() {
     return {
