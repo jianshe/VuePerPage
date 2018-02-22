@@ -18,12 +18,16 @@
 		        </div>
 		        <div class="swiper-pagination"></div>
 		    </div>
-		    <img src="../../images/fl.svg" class="fl_back animation_opactiy">
+		    <!-- <img src="../../images/fl.svg" class="fl_back animation_opactiy"> -->
     	</nav>
-    	<div class="shop_list_container">
-	    	<header class="shop_header">
-	    		<span class="shop_header_title">附近商家</span>
-	    	</header>
+ 	    <div class="shop_list_container">
+          <header class="shop_header">
+            <svg class="shop_icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#shop"></use>
+            </svg>
+            <span class="shop_header_title">附近商家</span>
+          </header>
+          <shop-list v-if="hasGetData" :geohash="geohash"></shop-list>
     	</div>
     	<foot-guide></foot-guide>
     </div>    
@@ -33,9 +37,10 @@
 import { mapMutations } from "vuex";
 import headTop from "@/components/header/head";
 import footGuide from "@/components/footer/footGuide";
+import shopList from "@/components/common/shoplist";
 import { msiteAddress, msiteFoodTypes, cityGuess } from "@/service/getData";
-import '@/plugins/swiper.min.js'
-import '@/style/swiper.min.css'
+import "@/plugins/swiper.min.js";
+import "@/style/swiper.min.css";
 export default {
   data() {
     return {
@@ -74,10 +79,16 @@ export default {
         }
         this.foodTypes = foodArr;
       })
-      .then();
+      .then(() => {
+        //初始化swiper
+        new Swiper(".swiper-container", {
+          pagination: ".swiper-pagination"
+        });
+      });
   },
   components: {
     headTop,
+    shopList,
     footGuide
   },
   computed: {},
