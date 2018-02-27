@@ -217,3 +217,12 @@ export const shopList = (latitude, longitude, offset, restaurant_category_id = '
 	return fetch('/shopping/restaurants', data);
 };
 
+/**
+ * 获取food页面的 category 种类列表
+ */
+
+export const foodCategory = (latitude, longitude) => fetch('/shopping/v2/restaurant/category', {
+	latitude,
+	longitude
+});
+

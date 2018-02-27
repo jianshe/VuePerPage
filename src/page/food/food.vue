@@ -3,29 +3,129 @@
     	<head-top :head-title="headTitle" goBack="true"></head-top>
 		  	<section class="sort_container">
     		<div class="sort_item">
-    			<div class="sort_item_container">
+    			<div class="sort_item_container" @click="chooseType('food')">
     				<div class="sort_item_border">
 						<span :class="{category_title : sortBy == 'food'}">{{foodTitle}}</span>
 						<i class="icon iconfont icon-triangledownfill"></i>
     				</div>
     			</div>
+          <transition name="showlist" v-show="category">
+	    			<section v-show="sortBy == 'food'" class="category_container sort_detail_type">
+	    				<section class="category_left">
+	    					<ul>
+	    						<li v-for="(item, index) in category" :key="index" class="category_left_li" :class="{category_active:restaurant_category_id == item.id}" @click="selectCategoryName(item.id, index)">
+									<section>
+										<img :src="getImgPath(item.image_url)" v-if="index" class="category_icon">
+										<span>{{item.name}}</span>
+									</section>
+									<section>
+	    								<span class="category_count">{{item.count}}</span>
+	    								<svg v-if="index" width="8" height="8" xmlns="http://www.w3.org/2000/svg" version="1.1" class="category_arrow" >
+							    			<path d="M0 0 L6 4 L0 8"  stroke="#bbb" stroke-width="1" fill="none"/>
+							    		</svg>
+									</section>
+	    						</li>
+	    					</ul>
+	    				</section>
+              <section class="category_right">
+	    					<ul>
+	    						<li v-for="(item, index) in categoryDetail" v-if="index" :key="item.id" class="category_right_li" @click="getCategoryIds(item.id, item.name)" :class="{category_right_choosed: restaurant_category_ids == item.id || (!restaurant_category_ids)&&index == 0}">
+	    							<span>{{item.name}}</span>
+	    							<span>{{item.count}}</span>
+	    						</li>
+	    					</ul>
+	    				</section>
+	    			</section>
+	    		</transition>
     		</div>
-			<div class="sort_item">
-    			<div class="sort_item_container">
-    				<div class="sort_item_border">
-						<span :class="{category_title: sortBy == 'sort'}">排序</span>
-						<i class="icon iconfont icon-triangledownfill"></i>
-    				</div>
-    			</div>
-    		</div>
-			<div class="sort_item">
-    			<div class="sort_item_container">
-    				<div class="sort_item_border">
-						<span :class="{category_title: sortBy == 'activity'}">筛选</span>
-						<i class="icon iconfont icon-triangledownfill"></i>
-    				</div>
-    			</div>
-    		</div>
+        <div class="sort_item" :class="{choose_type:sortBy == 'sort'}">
+            <div class="sort_item_container" @click= "chooseType('sort')">
+              <div class="sort_item_border">
+              <span :class="{category_title: sortBy == 'sort'}">排序</span>
+              <i class="icon iconfont icon-triangledownfill"></i>
+              </div>
+            </div>
+            <transition name="showlist">
+	    			<section v-show="sortBy == 'sort'" class="sort_detail_type">
+	    				<ul class="sort_list_container" @click="sortList($event)">
+	    					<li class="sort_list_li">
+	    						<svg>
+									<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#default"></use>
+								</svg>
+	    						<p data="0" :class="{sort_select: sortByType == 0}">
+	    							<span>智能排序</span>
+	    							<svg v-if="sortByType == 0">
+										<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#selected"></use>
+									</svg>
+	    						</p>
+	    					</li>
+	    					<li class="sort_list_li">
+	    						<svg>
+									<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#distance"></use>
+								</svg>
+	    						<p data="5" :class="{sort_select: sortByType == 5}">
+	    							<span>距离最近</span>
+	    							<svg v-if="sortByType == 5">
+										<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#selected"></use>
+									</svg>
+	    						</p>
+	    					</li>
+	    					<li class="sort_list_li">
+	    						<svg>
+									<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#hot"></use>
+								</svg>
+	    						<p data="6" :class="{sort_select: sortByType == 6}">
+	    							<span>销量最高</span>
+	    							<svg v-if="sortByType == 6">
+										<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#selected"></use>
+									</svg>
+	    						</p>
+	    					</li>
+	    					<li class="sort_list_li">
+	    						<svg>
+									<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#price"></use>
+								</svg>
+	    						<p data="1" :class="{sort_select: sortByType == 1}">
+	    							<span>起送价最低</span>
+	    							<svg v-if="sortByType == 1">
+										<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#selected"></use>
+									</svg>
+								</p>
+	    					</li>
+	    					<li class="sort_list_li">
+	    						<svg>
+									<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#speed"></use>
+								</svg>
+	    						<p data="2" :class="{sort_select: sortByType == 2}">
+	    							<span>配送速度最快</span>
+	    							<svg v-if="sortByType == 2">
+										<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#selected"></use>
+									</svg>
+	    						</p>
+	    					</li>
+	    					<li class="sort_list_li">
+	    						<svg>
+									<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#rating"></use>
+								</svg>
+	    						<p data="3" :class="{sort_select: sortByType == 3}">
+	    							<span>评分最高</span>
+	    							<svg v-if="sortByType == 3">
+										<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#selected"></use>
+									</svg>
+	    						</p>
+	    					</li>
+	    				</ul>
+	    			</section>
+	    		</transition>
+        </div>
+        <div class="sort_item">
+          <div class="sort_item_container">
+            <div class="sort_item_border">
+            <span :class="{category_title: sortBy == 'activity'}">筛选</span>
+            <i class="icon iconfont icon-triangledownfill"></i>
+            </div>
+          </div>
+        </div>
     	</section>
     	<section class="shop_list_container">
 	    	<shop-list :geohash="geohash" :restaurantCategoryId="restaurant_category_id" :restaurantCategoryIds="restaurant_category_ids" :sortByType='sortByType' :deliveryMode="delivery_mode" :confirmSelect="confirmStatus" :supportIds="support_ids" v-if="latitude"></shop-list>
@@ -38,7 +138,7 @@ import { mapState, mapMutations } from "vuex";
 import headTop from "@/components/header/head";
 import shopList from "@/components/common/shoplist";
 import { getImgPath } from "@/components/common/mixin";
-import { msiteAddress } from "@/service/getData";
+import { msiteAddress, foodCategory, foodDelivery } from "@/service/getData";
 export default {
   data() {
     return {
@@ -86,6 +186,46 @@ export default {
         //记录当前经度纬度进入vuex
         this.RECORD_ADDRESS(res);
       }
+      //获取category分类左侧数据
+      this.category = await foodCategory(this.latitude, this.longitude);
+      //初始化时定位当前category分类左侧默认选择项，在右侧展示出其sub_categories列表
+      this.category.forEach(item=>{
+        if(this.restaurant_category_id == item.id){
+          this.categoryDetail = item.sub_categories;
+        }
+      })
+    },
+    //点击顶部三个选项，展示不同的列表，选中当前选项进行展示，同时收回其他选项
+    async chooseType(type) {
+      if (this.sortBy !== type) {
+        this.sortBy = type;
+        //food选项中头部标题发生改变，需要特殊处理
+        if (type == "food") {
+          this.foodTitle = "分类";
+        } else {
+          //将foodTitle和headTitle进行同步
+          this.foodTitle = this.headTitle;
+        }
+      } else {
+        //再次点击相同选项时收回列表
+        this.sortBy = "";
+        if (type == "food") {
+          //将foodTitle 和 headTitle进行同步
+          this.foodTitle = this.headTitle;
+        }
+      }
+    },
+    //选中Category左侧列表的某个选项时，右侧渲染相应的sub_categories列表
+    selectCategoryName(id,index){
+      //第一个选项 -- 全部商家 因为没有自己的列表，所以点击则默认获取所有数据 
+      if(index === 0){
+        this.restaurant_category_ids = null;
+        this.sortBy = '';
+        //不是第一个选项时，右侧展示其子级sub_categories的列表
+      } else {
+        this.restaurant_category_id = id;
+        this.categoryDetail = this.category[index].sub_categories;
+      }
     }
   }
 };
@@ -96,8 +236,8 @@ export default {
 .food_container {
   padding-top: 3.6rem;
 }
-.iconfont{
-	font-size: 0.05rem;
+.iconfont {
+  font-size: 0.05rem;
 }
 .sort_container {
   background-color: #fff;
