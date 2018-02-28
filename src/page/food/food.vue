@@ -49,82 +49,99 @@
 	    			<section v-show="sortBy == 'sort'" class="sort_detail_type">
 	    				<ul class="sort_list_container" @click="sortList($event)">
 	    					<li class="sort_list_li">
-	    						<svg>
-									<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#default"></use>
-								</svg>
+	    					  <i class="icon iconfont icon-order"></i>
 	    						<p data="0" :class="{sort_select: sortByType == 0}">
 	    							<span>智能排序</span>
-	    							<svg v-if="sortByType == 0">
-										<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#selected"></use>
-									</svg>
+                    <span v-if="sortByType == 0">
+                        <i class="icon iconfont icon-check"></i>
+                    </span>
 	    						</p>
 	    					</li>
 	    					<li class="sort_list_li">
-	    						<svg>
-									<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#distance"></use>
-								</svg>
+	    					<i class="icon iconfont icon-location"></i>
 	    						<p data="5" :class="{sort_select: sortByType == 5}">
 	    							<span>距离最近</span>
-	    							<svg v-if="sortByType == 5">
-										<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#selected"></use>
-									</svg>
+									  <span v-if="sortByType == 5">
+                        <i class="icon iconfont icon-check"></i>
+                    </span>
 	    						</p>
 	    					</li>
 	    					<li class="sort_list_li">
-	    						<svg>
-									<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#hot"></use>
-								</svg>
+                  <i class="icon iconfont icon-qiang"></i>
 	    						<p data="6" :class="{sort_select: sortByType == 6}">
 	    							<span>销量最高</span>
-	    							<svg v-if="sortByType == 6">
-										<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#selected"></use>
-									</svg>
+	    							<span v-if="sortByType == 6">
+                      <i class="icon iconfont icon-check"></i>
+                    </span>
 	    						</p>
 	    					</li>
 	    					<li class="sort_list_li">
-	    						<svg>
-									<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#price"></use>
-								</svg>
+                  <i class="icon iconfont icon-goodsnew"></i>
 	    						<p data="1" :class="{sort_select: sortByType == 1}">
 	    							<span>起送价最低</span>
-	    							<svg v-if="sortByType == 1">
-										<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#selected"></use>
-									</svg>
+	    							<span v-if="sortByType == 1">
+                      <i class="icon iconfont icon-check"></i>
+                    </span>
 								</p>
 	    					</li>
 	    					<li class="sort_list_li">
-	    						<svg>
-									<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#speed"></use>
-								</svg>
+                  <i class="icon iconfont icon-sports"></i>
 	    						<p data="2" :class="{sort_select: sortByType == 2}">
 	    							<span>配送速度最快</span>
-	    							<svg v-if="sortByType == 2">
-										<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#selected"></use>
-									</svg>
+	    						<span v-if="sortByType == 2">
+                      <i class="icon iconfont icon-check"></i>
+                  </span>
 	    						</p>
 	    					</li>
 	    					<li class="sort_list_li">
-	    						<svg>
-									<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#rating"></use>
-								</svg>
+                  <i class="icon iconfont icon-favor"></i>
 	    						<p data="3" :class="{sort_select: sortByType == 3}">
 	    							<span>评分最高</span>
-	    							<svg v-if="sortByType == 3">
-										<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#selected"></use>
-									</svg>
+                    <span v-if="sortByType == 3">
+                        <i class="icon iconfont icon-check"></i>
+                    </span>
 	    						</p>
 	    					</li>
 	    				</ul>
 	    			</section>
 	    		</transition>
         </div>
-        <div class="sort_item">
-          <div class="sort_item_container">
-            <div class="sort_item_border">
+        <div class="sort_item" :class="{choose_type:sortBy =='activity'}">
+          <div class="sort_item_container" @click="chooseType('activity')">
             <span :class="{category_title: sortBy == 'activity'}">筛选</span>
-            <i class="icon iconfont icon-triangledownfill"></i>
-            </div>
+              <i class="icon iconfont icon-triangledownfill"></i>
           </div>
+          <transition name="showlist">
+	    			<section v-show="sortBy == 'activity'" class="sort_detail_type filter_container">
+	    				<section style="width: 100%;">
+	    					<header class="filter_header_style">配送方式</header>
+	    					<ul class="filter_ul">
+	    						<li v-for="item in Delivery" :key="item.id" class="filter_li" @click="selectDeliveryMode(item.id)">
+	    							<svg :style="{opacity: (item.id == 0)&&(delivery_mode !== 0)? 0: 1}">
+										<use xmlns:xlink="http://www.w3.org/1999/xlink" :xlink:href="delivery_mode == item.id? '#selected':'#fengniao'"></use>
+									</svg>
+	    							<span :class="{selected_filter: delivery_mode == item.id}">{{item.text}}</span>
+	    						</li>
+	    					</ul>
+	    				</section>
+	    				<section style="width: 100%;">
+	    					<header class="filter_header_style">商家属性（可以多选）</header>
+	    					<ul class="filter_ul" style="paddingBottom: .5rem;">
+	    						<li v-for="(item,index) in Activity" :key="item.id" class="filter_li" @click="selectSupportIds(index, item.id)">
+	    							<svg v-show="support_ids[index]" class="activity_svg">
+										<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#selected"></use>
+									</svg>
+	    							<span class="filter_icon" :style="{color: '#' + item.icon_color, borderColor: '#' + item.icon_color}" v-show="!support_ids[index]">{{item.icon_name}}</span>
+	    							<span :class="{selected_filter: support_ids[index]}">{{item.name}}</span>
+	    						</li>
+	    					</ul>
+	    				</section>
+	    				<footer class="confirm_filter">
+	    					<div class="clear_all filter_button_style" @click="clearSelect">清空</div>
+	    					<div class="confirm_select filter_button_style" @click="confirmSelectFun">确定<span v-show="filterNum">({{filterNum}})</span></div>
+	    				</footer>
+	    			</section>
+	    		</transition>
         </div>
     	</section>
     	<section class="shop_list_container">
@@ -138,7 +155,7 @@ import { mapState, mapMutations } from "vuex";
 import headTop from "@/components/header/head";
 import shopList from "@/components/common/shoplist";
 import { getImgPath } from "@/components/common/mixin";
-import { msiteAddress, foodCategory, foodDelivery } from "@/service/getData";
+import { msiteAddress, foodCategory, foodDelivery,foodActivity} from "@/service/getData";
 export default {
   data() {
     return {
@@ -189,11 +206,16 @@ export default {
       //获取category分类左侧数据
       this.category = await foodCategory(this.latitude, this.longitude);
       //初始化时定位当前category分类左侧默认选择项，在右侧展示出其sub_categories列表
-      this.category.forEach(item=>{
-        if(this.restaurant_category_id == item.id){
+      this.category.forEach(item => {
+        if (this.restaurant_category_id == item.id) {
           this.categoryDetail = item.sub_categories;
         }
-      })
+      });
+
+      //获取筛选列表的配送方式
+      this.Delivery = await foodDelivery(this.latitude,this.longitude);
+      //获取筛选列表的商铺活动
+      this.Activity = await foodActivity(this.latitude,this.longitude);
     },
     //点击顶部三个选项，展示不同的列表，选中当前选项进行展示，同时收回其他选项
     async chooseType(type) {
@@ -216,16 +238,76 @@ export default {
       }
     },
     //选中Category左侧列表的某个选项时，右侧渲染相应的sub_categories列表
-    selectCategoryName(id,index){
-      //第一个选项 -- 全部商家 因为没有自己的列表，所以点击则默认获取所有数据 
-      if(index === 0){
+    selectCategoryName(id, index) {
+      //第一个选项 -- 全部商家 因为没有自己的列表，所以点击则默认获取所有数据
+      if (index === 0) {
         this.restaurant_category_ids = null;
-        this.sortBy = '';
+        this.sortBy = "";
         //不是第一个选项时，右侧展示其子级sub_categories的列表
       } else {
         this.restaurant_category_id = id;
         this.categoryDetail = this.category[index].sub_categories;
       }
+    },
+    //点击某个排序方式，获取事件对象的data值，并根据获取的值重新获取数据渲染
+    sortList(event) {
+      let node;
+      // 如果点击的是 span 中的文字，则需要获取到 span 的父标签 p
+      if (event.target.nodeName.toUpperCase() !== "P") {
+        node = event.target.parentNode;
+      } else {
+        node = event.target;
+      }
+      this.sortByType = node.getAttribute("data");
+      this.sortBy = "";
+    },
+    //筛选选项中的配送方式选择
+    selectDeliveryMode(id) {
+      //delivery_mode为空时，选中当前项，并且filterNum加一
+      if (this.delivery_mode == null) {
+        this.filterNum++;
+        this.delivery_mode = id;
+        //delivery_mode为当前已有值时，清空所选项，并且filterNum减一
+      } else if (this.delivery_mode == id) {
+        this.filterNum--;
+        this.delivery_mode = null;
+        //delivery_mode已有值且不等于当前选择值，则赋值delivery_mode为当前所选id
+      } else {
+        this.delivery_mode = id;
+      }
+    },
+    //点击商家活动，状态取反
+    selectSupportIds(index, id) {
+      //数组替换新的值
+      this.support_ids.splice(index, 1, {
+        status: !this.support_ids[index].status,
+        id
+      });
+      //重新计算filterNum的个数
+      this.filterNum = this.delivery_mode == null ? 0 : 1;
+      this.support_ids.forEach(item => {
+        if (item.status) {
+          this.filterNum++;
+        }
+      });
+    },
+    //点击取消或者确认时，需要清空当前已选的状态值
+    clearAll() {
+      this.delivery_mode = null;
+      // this.support_ids.map(item => item.status = false);
+      //          this.filterNum = 0;
+    },
+    //只有点击清空按钮才清空数据，否则一直保持原有状态
+    clearSelect() {
+      this.support_ids.map(item => (item.status = false));
+      this.filterNum = 0;
+      this.delivery_mode = null;
+    },
+    //点击确认时，将需要筛选的id值传递给子组件，并且收回列表
+    confirmSelectFun() {
+      //状态改变时，因为子组件进行了监听，会重新获取数据进行筛选
+      this.confirmStatus = !this.confirmStatus;
+      this.sortBy = "";
     }
   }
 };
@@ -237,7 +319,7 @@ export default {
   padding-top: 3.6rem;
 }
 .iconfont {
-  font-size: 0.05rem;
+  font-size: 12px;
 }
 .sort_container {
   background-color: #fff;
@@ -366,7 +448,7 @@ export default {
       height: 2.5rem;
       display: flex;
       align-items: center;
-      svg {
+      i {
         @include wh(0.7rem, 0.7rem);
         margin: 0 0.3rem 0 0.8rem;
       }
