@@ -15,6 +15,7 @@
 					<h5 class="rating_order_num">
 						<section class="rating_order_num_left">
 							<section class="rating_section">
+								<rating-star :rating='item.rating'></rating-star>
 								<span class="rating_num">{{item.rating}}</span>
 							</section>
 							<section class="order_section">
@@ -70,6 +71,7 @@ import {imgBaseUrl} from '@/config/env'
 import {showBack, animate} from '@/config/mUtils'
 import {loadMore, getImgPath} from './mixin'
 import loading from './loading'
+import ratingStar from './ratingStar'
 export default {
 	data(){
 		return {
@@ -86,7 +88,8 @@ export default {
 		this.initData();
 	},
 	components: {
-		loading
+		loading,
+		ratingStar
 	},
 	props: ['restaurantCategoryId', 'restaurantCategoryIds', 'sortByType', 'deliveryMode', 'supportIds', 'confirmSelect', 'geohash'],
 	mixins: [loadMore, getImgPath],

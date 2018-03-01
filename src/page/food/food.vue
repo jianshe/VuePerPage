@@ -117,9 +117,8 @@
 	    					<header class="filter_header_style">配送方式</header>
 	    					<ul class="filter_ul">
 	    						<li v-for="item in Delivery" :key="item.id" class="filter_li" @click="selectDeliveryMode(item.id)">
-	    							<svg :style="{opacity: (item.id == 0)&&(delivery_mode !== 0)? 0: 1}">
-										<use xmlns:xlink="http://www.w3.org/1999/xlink" :xlink:href="delivery_mode == item.id? '#selected':'#fengniao'"></use>
-									</svg>
+                    <i v-show="delivery_mode == item.id" class="icon iconfont icon-check"></i>
+                    <i v-if="delivery_mode != item.id" class="icon iconfont icon-goods_new_light"></i>
 	    							<span :class="{selected_filter: delivery_mode == item.id}">{{item.text}}</span>
 	    						</li>
 	    					</ul>
@@ -128,11 +127,9 @@
 	    					<header class="filter_header_style">商家属性（可以多选）</header>
 	    					<ul class="filter_ul" style="paddingBottom: .5rem;">
 	    						<li v-for="(item,index) in Activity" :key="item.id" class="filter_li" @click="selectSupportIds(index, item.id)">
-	    							<svg v-show="support_ids[index]" class="activity_svg">
-										<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#selected"></use>
-									</svg>
-	    							<span class="filter_icon" :style="{color: '#' + item.icon_color, borderColor: '#' + item.icon_color}" v-show="!support_ids[index]">{{item.icon_name}}</span>
-	    							<span :class="{selected_filter: support_ids[index]}">{{item.name}}</span>
+                     <i v-show="support_ids[index].status" class="icon iconfont icon-check"></i>
+	    							<span class="filter_icon" :style="{color: '#' + item.icon_color, borderColor: '#' + item.icon_color}" v-show="!support_ids[index].status">{{item.icon_name}}</span>
+	    							<span :class="{selected_filter: support_ids[index].status}">{{item.name}}</span>
 	    						</li>
 	    					</ul>
 	    				</section>
@@ -155,7 +152,12 @@ import { mapState, mapMutations } from "vuex";
 import headTop from "@/components/header/head";
 import shopList from "@/components/common/shoplist";
 import { getImgPath } from "@/components/common/mixin";
-import { msiteAddress, foodCategory, foodDelivery,foodActivity} from "@/service/getData";
+import {
+  msiteAddress,
+  foodCategory,
+  foodDelivery,
+  foodActivity
+} from "@/service/getData";
 export default {
   data() {
     return {
@@ -172,7 +174,7 @@ export default {
       Activity: null, //商家支持活动数据
       delivery_mode: null, //选中的配送方式
       support_ids: [], //选中的商铺活动列表
-      filterNum: 0, //所选中的所有样式的集合
+      filterNum: 0, //所选中的所有筛选的集合
       confirmStatus: false //确认选择
     };
   },
@@ -213,9 +215,14 @@ export default {
       });
 
       //获取筛选列表的配送方式
-      this.Delivery = await foodDelivery(this.latitude,this.longitude);
+      this.Delivery = await foodDelivery(this.latitude, this.longitude);
       //获取筛选列表的商铺活动
-      this.Activity = await foodActivity(this.latitude,this.longitude);
+      this.Activity = await foodActivity(this.latitude, this.longitude);
+
+      //记录support_ids的状态，默认不选中，点击状态取反，status为true时为选中状态
+      this.Activity.forEach((item, index) => {
+        this.support_ids[index] = { status: false, id: item.id };
+      });
     },
     //点击顶部三个选项，展示不同的列表，选中当前选项进行展示，同时收回其他选项
     async chooseType(type) {
@@ -294,8 +301,8 @@ export default {
     //点击取消或者确认时，需要清空当前已选的状态值
     clearAll() {
       this.delivery_mode = null;
-      // this.support_ids.map(item => item.status = false);
-      //          this.filterNum = 0;
+      this.support_ids.map(item => (item.status = false));
+      this.filterNum = 0;
     },
     //只有点击清空按钮才清空数据，否则一直保持原有状态
     clearSelect() {
