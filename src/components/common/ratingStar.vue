@@ -1,16 +1,12 @@
  <template>
 	<div class="rating_container">
         <section class="star_container">
-            <div class="grey_fill" >
-                <i class="icon iconfont icon-favor" v-for="num in 5" :key="num"></i>
-            </div>
+            <i class="grey_fill icon iconfont icon-favor" v-for="num in 5" :key="num"></i>
         </section>
         <div :style="'width:' + rating*2/5 + 'rem'" class="star_overflow">
-            <section class="star_container" >
-                <div class="orange_fill">
-                  <i class="icon iconfont icon-favorfill" v-for="num in 5" :key="num"></i>
-                </div>
-            </section>
+          <section class="star_container" >
+            <i class="orange_fill icon iconfont icon-favorfill" v-for="num in 5" :key="num"></i>
+          </section>
         </div>
     </div>
 </template>
@@ -45,6 +41,9 @@ export default {
     left: -0.02rem;
     .grey_fill {
       fill: #d1d1d1;
+    }
+    .iconfont{
+      font-size: 10px;
     }
     .orange_fill {
       fill: #ff9a0d;
