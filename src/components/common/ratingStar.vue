@@ -5,7 +5,7 @@
         </section>
         <div :style="'width:' + rating*2/5 + 'rem'" class="star_overflow">
           <section class="star_container" >
-            <i class="orange_fill icon iconfont icon-favorfill" v-for="num in 5" :key="num"></i>
+            <i class="orange_fill icon iconfont icon-star" v-for="num in 5" :key="num"></i>
           </section>
         </div>
     </div>
@@ -43,7 +43,7 @@ export default {
       fill: #d1d1d1;
     }
     .iconfont{
-      font-size: 10px;
+      font-size: 0.4rem;
     }
     .orange_fill {
       fill: #ff9a0d;
