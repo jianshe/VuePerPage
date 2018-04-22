@@ -4,8 +4,11 @@ const city = r => require.ensure([], () => r(require('../page/city/city')), 'cit
 const login = r => require.ensure([], () => r(require('../page/login/login')), 'login')
 const forget = r => require.ensure([], () => r(require('../page/forget/forget')), 'forget')
 const msite = r => require.ensure([], () => r(require('../page/msite/msite')), 'msite')
-const food = r=>require.ensure([],()=>r(require('../page/food/food.vue')),'food')
+const food = r => require.ensure([], () => r(require('../page/food/food.vue')), 'food')
 const good = r => require.ensure([], () => r(require('../page/good/good')), 'good')
+
+const shop = r => require.ensure([], () => r(require('../page/shop/shop.vue')), 'shop')
+
 const upstage = r => require.ensure([], () => r(require('../page/upstage/upstage')), 'upstage')
 const profile = r => require.ensure([], () => r(require('../page/profile/profile')), 'profile')
 const info = r => require.ensure([], () => r(require('../page/profile/children/info')), 'info')
@@ -65,8 +68,13 @@ export default [{
     },
     //food页面
     {
-      path:'/food',
-      component:food
+      path: '/food',
+      component: food
+    },
+    //shop页面
+    {
+      path:'/shop',
+      component:shop
     },
     {
       path: '/good',

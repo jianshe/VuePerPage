@@ -85,9 +85,3 @@ export const getImgPath = {
 	}
 
 }
-
-export const hi = {
-	mounted(){
-		console.log('this mixin!');
-	}
-}
