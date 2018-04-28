@@ -31,9 +31,6 @@
             </section>
 
 
-
-
-
             
         </section>
 
@@ -151,6 +148,14 @@ export default {
     },
     goback() {
       this.$router.go(-1);
+    }
+  },
+  watch: {
+    //商品、评论切换状态
+    changeShowType: function(value) {
+      if (value === "rating") {
+          console.log("rating");
+      }
     }
   }
 };
