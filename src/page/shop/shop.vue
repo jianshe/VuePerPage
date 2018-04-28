@@ -2,7 +2,7 @@
    <div>
         <section v-if="!showLoading" class="shop_container">
 
-            
+
             <nav class="goback" @click="goback">
                 <i class="icon iconfont white icon-back"></i>
             </nav>
@@ -257,6 +257,25 @@ export default {
         position: absolute;
         right: 0.3rem;
       }
+    }
+  }
+}
+.change_show_type {
+  display: flex;
+  background-color: #fff;
+  padding: 0.3rem 0 0.6rem;
+  border-bottom: 1px solid #ebebeb;
+  div {
+    flex: 1;
+    text-align: center;
+    span {
+      @include sc(0.65rem, #666);
+      padding: 0.2rem 0.1rem;
+      border-bottom: 0.12rem solid #fff;
+    }
+    .activity_show {
+      color: #3190e8;
+      border-color: #3190e8;
     }
   }
 }
