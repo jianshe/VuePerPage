@@ -10,3 +10,4 @@ export const SAVE_ADDRESS = 'SAVE_ADDRESS'
 export const SAVE_QUESTION = 'SAVE_QUESTION'
 export const RETSET_NAME = 'RETSET_NAME'
 export const OUT_LOGIN = 'OUT_LOGIN'
+export const INIT_BUYCART = 'INIT_BUYCART';

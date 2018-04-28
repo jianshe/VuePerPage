@@ -256,6 +256,12 @@ export default {
         this.categoryDetail = this.category[index].sub_categories;
       }
     },
+    //选中Category右侧列表的某个选项时，进行筛选，重新获取数据并渲染
+    getCategoryIds(id, name) {
+      this.restaurant_category_ids = id;
+      this.sortBy = "";
+      this.foodTitle = this.headTitle = name;
+    },
     //点击某个排序方式，获取事件对象的data值，并根据获取的值重新获取数据渲染
     sortList(event) {
       let node;
