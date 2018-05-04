@@ -1,8 +1,6 @@
  <template>
    <div>
         <section v-if="!showLoading" class="shop_container">
-
-
             <nav class="goback" @click="goback">
                 <i class="icon iconfont white icon-back"></i>
             </nav>
@@ -18,7 +16,6 @@
                             <p class="description_text">商家配送／{{shopDetailData.float_delivery_fee}}分钟送达／配送费¥{{shopDetailData.float_delivery_fee}}</p>
                         </section>
                     </div>
-
                 </section>
             </header>
             <section class="change_show_type" ref="chooseType">
@@ -57,7 +54,7 @@
                                         </p>
                                     </header>
                                     <section v-for="(foods,foodindex) in item.foods" :key="foodindex" class="menu_detail_list">
-                                        <router-link  :to="{path: 'shop/foodDetail', query:{image_path:foods.image_path, description: foods.description, month_sales: foods.month_sales, name: foods.name, rating: foods.rating, rating_count: foods.rating_count, satisfy_rate: foods.satisfy_rate, foods, shopId}}" tag="div" class="menu_detail_link">
+                                        <a href="javascript:;" class="menu_detail_link">
                                             <section class="menu_food_img">
                                                 <img :src="imgBaseUrl + foods.image_path">
                                             </section>
@@ -80,7 +77,7 @@
                                                 <span :style="{color: '#' + foods.activity.image_text_color,borderColor:'#' +foods.activity.icon_color}">{{foods.activity.image_text}}</span>
                                                 </p>
                                             </section>
-                                        </router-link>
+                                        </a>
                                         <footer class="menu_detail_footer">
                                             <section class="food_price">
                                                 <span>¥</span>
@@ -91,7 +88,7 @@
                                     </section>
                                 </li>
                             </ul>
-                        </section>
+                      </section>
               </section>
           </section>
         </transition>
