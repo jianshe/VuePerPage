@@ -1,15 +1,16 @@
 <template>
   <div class="pos">
-    good
+    <parent></parent>
    <foot-guide></foot-guide>
   </div>
 </template>
  
 <script>
 import footGuide from '@/components/footer/footGuide'
+import parent from '@/components/study/parent'
 export default {
     components: {
-    	footGuide
+    	footGuide,parent
     },
 }
 </script>

@@ -1,15 +1,16 @@
 <template>
   <div class="pos">
-    口碑
+    <receive></receive>
    <foot-guide></foot-guide>
   </div>
 </template>
  
 <script>
 import footGuide from '@/components/footer/footGuide'
+import receive from '@/components/study/receive'
 export default {
     components: {
-    	footGuide
+    	footGuide,receive
     },
 }
 </script>
